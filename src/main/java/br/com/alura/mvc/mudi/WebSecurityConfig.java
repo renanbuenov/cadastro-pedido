@@ -19,17 +19,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.
-                csrf().disable()
+        http
                 .authorizeRequests()
-                    .anyRequest().authenticated()
+                .antMatchers("/home/**")
+                    .permitAll()
+                .anyRequest()
+                    .authenticated()
                 .and()
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home", true) //VERY IMPORTANT, PARA FORÇAR O SPRING REDIREICIONAR A PAHINA NO MOMENTO DA AUTENTICAÇÃO
+                        .defaultSuccessUrl("/usuario/pedido", true) //VERY IMPORTANT, PARA FORÇAR O SPRING REDIREICIONAR A PAHINA NO MOMENTO DA AUTENTICAÇÃO
                         .permitAll()
                 )
-                .logout(logout -> logout.logoutUrl("/logout"));
+                .logout(logout -> {
+                    logout.logoutUrl("/logout")
+                            .logoutSuccessUrl("/home");
+                })
+                .csrf().disable();
     }
 
     @Override

@@ -23,6 +23,14 @@ public class Pedido {
     @ManyToOne(fetch = FetchType.LAZY) //Muitos pedidos terão um user. É lazy porque o banco não precisa carregar os dados do user.
     private User user;
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getNomeProduto() {
         return nomeProduto;
     }
