@@ -20,6 +20,9 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
+    @ManyToOne(fetch = FetchType.LAZY) //Muitos pedidos terão um user. É lazy porque o banco não precisa carregar os dados do user.
+    private User user;
+
     public String getNomeProduto() {
         return nomeProduto;
     }
