@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Pedido {
@@ -26,8 +27,20 @@ public class Pedido {
     @JsonIgnore
     private User user;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Oferta> ofertas;
+
     public User getUser() {
         return user;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setUser(User user) {
@@ -88,5 +101,13 @@ public class Pedido {
 
     public void setStatus(StatusPedido status) {
         this.status = status;
+    }
+
+    public List<Oferta> getOfertas() {
+        return ofertas;
+    }
+
+    public void setOfertas(List<Oferta> ofertas) {
+        this.ofertas = ofertas;
     }
 }

@@ -1,4 +1,4 @@
-package br.com.alura.mvc.mudi;
+package br.com.alura.mvc.mudi.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .csrf().disable();
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

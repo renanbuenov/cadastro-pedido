@@ -12,6 +12,7 @@ public class User {
     private String password;
     private Boolean enabled;
 
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Pedido> pedidos;
 
