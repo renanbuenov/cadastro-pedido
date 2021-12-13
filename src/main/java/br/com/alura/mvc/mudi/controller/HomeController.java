@@ -23,11 +23,11 @@ public class HomeController {
 
     @GetMapping
     public String home(Model model, Principal principal) { //Com o principal, irá pegar os dados do usuário e enviar na requisição para mostrar somentes os pedidos daquele user.
-        Sort sort = Sort.by("dataDaEntrega").descending();
+        Sort sort = Sort.by("id").descending();
         PageRequest paginacao = PageRequest.of(0, 10, sort);
 
         List<Pedido> pedidos = pedidoRepository.findByStatus(StatusPedido.ENTREGUE, paginacao);
         model.addAttribute("pedidos", pedidos);
-        return "/home";
+        return "home";
     }
 }
