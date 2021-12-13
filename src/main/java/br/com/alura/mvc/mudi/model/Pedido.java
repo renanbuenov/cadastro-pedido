@@ -1,5 +1,7 @@
 package br.com.alura.mvc.mudi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,6 +23,7 @@ public class Pedido {
     private StatusPedido status;
 
     @ManyToOne(fetch = FetchType.LAZY) //Muitos pedidos terão um user. É lazy porque o banco não precisa carregar os dados do user.
+    @JsonIgnore
     private User user;
 
     public User getUser() {
